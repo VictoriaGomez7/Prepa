@@ -26,7 +26,7 @@ class AlumnosController extends Controller
       if (isset($clave)&&isset($nombre)) {
         $CAlumno = Alumno::where('id',$alumno1->id)->get();
         if (count($CAlumno)==0){
-          return back()->with('msj',' algún dato no existe' );
+          return back()->with('msj',' Algún dato no existe' );
         }
         else {
           foreach ($CAlumno as $campo) {
@@ -38,7 +38,6 @@ class AlumnosController extends Controller
             }
           }
         }
-
       }
 
       else if  (isset($clave)) {

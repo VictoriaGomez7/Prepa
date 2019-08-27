@@ -100,8 +100,9 @@ class AsistenciasController extends Controller
             $CMateria = Materia::get();
             //return $CMateria;
             $new=[$CDocente,$CMateria];
+          }
             return back()->with('msj1', 'Datos Guardados Correctamente');
-        }
+        
           break;
 
         default:
@@ -304,8 +305,13 @@ class AsistenciasController extends Controller
           }
         }
       }
+      if (count($arrayalumnos)==0) {
+        return back()->with('msj',' Favor de asignar alumnos a este grupo' );
+      }
+      else{
       return view('Asistencias.show',compact('arrayalumnos','usua','estep','Materia'));
       }
+    }
       
       
       else{
@@ -326,7 +332,12 @@ class AsistenciasController extends Controller
           }
         }
       }
+      if (count($arrayalumnos)==0) {
+        return back()->with('msj',' Favor de asignar alumnos a este grupo' );
+      }
+      else{
       return view('Asistencias.show',compact('arrayalumnos','usua','estep','Materia'));
+      }
         }
         else{
           
@@ -344,7 +355,12 @@ class AsistenciasController extends Controller
           }
         }
       }
+      if (count($arrayalumnos)==0) {
+        return back()->with('msj',' Favor de asignar alumnos a este grupo' );
+      }
+      else{
       return view('Asistencias.show',compact('arrayalumnos','usua','estep','Materia'));
+      }
     }
   }
     }

@@ -48,13 +48,6 @@
             {!! Form::close()!!}
             
             {!!Form::open(['route' => ['Alumnos.destroy',$alumno->id],'method'=>'DELETE'])!!}
-            {!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
-            {!! Form::close()!!}
-                      </div>
-                    </div>
-                </div>
-            </div></td>-->
-            {!!Form::open(['route' => ['Alumnos.destroy',$alumno->id],'method'=>'DELETE'])!!}
             <td>{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}</td>
             {!! Form::close()!!}
 

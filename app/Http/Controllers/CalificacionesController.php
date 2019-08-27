@@ -26,21 +26,18 @@ class CalificacionesController extends Controller
         //return $id;
         $NombreDoc=Docentes::where('id',$id)->get();
         $MateriasDelDocente=RelacionDocenteMateriaGrupo::where('Docente',$NombreDoc[0]->Nombre)->get();
-        $Periodo1ini=Periodo::where('id','1')->get('fecha1');
-        $Periodo1fin=Periodo::where('id','1')->get('fecha2');
-        $Periodo2ini=Periodo::where('id','2')->get('fecha1');
-        $Periodo2fin=Periodo::where('id','2')->get('fecha2');
+        $Datos_tabla=Periodo::get();
         $visibility=2;
-        //return $Periodo1ini[0]->fecha1.$Periodo1fin[0]->fecha2.$Periodo2ini[0]->fecha1.$Periodo2fin[0]->fecha2;
-        //return count($Periodo1ini).count($Periodo1fin).count($Periodo2ini).count($Periodo2fin);
         
         if (count($MateriasDelDocente)==0){
+            //return '1';
             return redirect('/DocenteInicios?valor='.$usua)->with('MsjERR','No tiene materias asignadas');
         }
-        elseif ($Periodo1ini[0]->fecha1=='' or $Periodo1fin[0]->fecha2=='' or $Periodo2ini[0]->fecha1=='' or $Periodo2fin[0]->fecha2==''){
+        elseif (count($Datos_tabla)==0){
             return redirect('/DocenteInicios?valor='.$usua)->with('MsjERR','Los períodos no han sido asignados');
         }
         else{
+            //return '3';
             view('DocenteInterfazPrincipal.InterfazPrincipal',compact('usua'));
             return view('Calificaciones.VisualizarCalif',compact('MateriasDelDocente','visibility','id','usua'));
         }
