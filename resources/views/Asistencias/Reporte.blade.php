@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <a href="/DocenteInicios?valor={{ ($usua) }}">
-    <button class="btn btn-success" style="position: absolute;top: 105%;left:50%;z-index: 1;">Cancelar</button></a>
+    <button class="btn btn-success" style="position: absolute;top: 105%;left:50%;z-index: 1;">Regresar</button></a>
 @extends('layouts.app')
 
 @section('title','Docente')
@@ -30,22 +30,10 @@
               <!--<option value="otro">Seleccione uno</option>-->
 
 
-               @foreach( $asis as $doc)
-              @foreach($arrayalumnos as $alumn)
-              @if($doc->id == $alumn->id)
-              @if($doc->Periodo ==1)
+                <option value="1">Primer periodo</option>
 
-                <option value="{{$doc->Periodo}}">Primer periodo</option>
+                <option value="2">Segundo periodo</option>
                 
-               @endif
-               @if($doc->Periodo ==2)
-
-                <option value="{{$doc->Periodo}}">Segundo periodo</option>
-                
-               @endif
-               @endif
-              @endforeach
-              @endforeach
                </select>
 
 <script type="text/javascript">
@@ -66,9 +54,8 @@ function mostrar(id) {
 </script>
 
 
-@foreach( $asis as $doc)
-@foreach($arrayalumnos as $alumn)
-@if($doc->id == $alumn->id)
+
+
 
 <div class="element" id="{{$doc->Periodo}}" style="display: none; position: absolute;top: 5%; left: 35%; width: 60%;height:70%;">
     <table id="alumn" class="table">
@@ -86,7 +73,9 @@ function mostrar(id) {
       </thead>
         <tbody>
           <tr>
-
+            @foreach( $asis as $doc)
+@foreach($arrayalumnos as $alumn)
+            @if($doc->id == $alumn->id)
             <form class="form-group" method="GET">
               <td align="center">{{ $doc->id }}</td>
               <td align="center">{{ $alumn->Nombre_A}}</td>
@@ -98,6 +87,9 @@ function mostrar(id) {
             </form>
             
           </tr>
+          @endif
+@endforeach
+@endforeach
         </tbody>
 
     </table>
@@ -117,9 +109,7 @@ $(document).ready(function() {
 });
 </script>
   </div>
-@endif
-@endforeach
-@endforeach
+
 
 
 

@@ -57,7 +57,7 @@ function mostrar(id) {
 @foreach($Mat_grup as $materia)
 @foreach($CMateria as $mat)
 @foreach($CDocente as $doc)
-@if( $materia->Clave == $doc->ClaveMateria)
+@if( $materia->Clave == $doc->ClaveMateria and $mat->Clave == $doc->ClaveMateria)
 
 <?php $new4=$doc->ClaveMateria.$doc->Grupo; ?>
 <?php $new=$doc->ClaveMateria .'_'. $doc->Grupo .'_'. $usua; ?>

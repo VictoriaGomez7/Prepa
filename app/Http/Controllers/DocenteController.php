@@ -23,7 +23,7 @@ class DocenteController extends Controller
         //return $id->id1;
         //return $id->name;
         if ($id->name!="" && $id->id1==""){
-            return 'Primer if';
+            //return 'Primer if';
             $CDocente = Docentes::where('Nombre', $id->name)->get();
             if (count($CDocente)==0)
             {
@@ -145,8 +145,6 @@ class DocenteController extends Controller
         $docente->Nombre = $NombreN;
         $docente->Domicilio = $DomicilioN;
         $docente->Telefono = $TelefonoN;
-        //echo $docente->Domicilio;
-        //$docente->save();
         $docente->save();
 
 
