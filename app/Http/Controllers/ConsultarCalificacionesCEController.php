@@ -58,6 +58,7 @@ class ConsultarCalificacionesCEController extends Controller
         $nombreA=Alumno::where('id', $request->id)->get('Nombre_A');
         $Materia=CalificacionesParciales::where('ClaveA', $request->id)->get('ClaveM');
         $Materia1=array();
+        $Materia2=array();
         $mat=Materia::all('Clave','Nombre');
         //return $mat;
         foreach ($mat as $ma) {
@@ -65,6 +66,7 @@ class ConsultarCalificacionesCEController extends Controller
                 if($ma->Clave==$M->ClaveM)
                 {
                     array_push($Materia1,$ma->Nombre);
+                    
                 }
             }
         }
@@ -84,7 +86,7 @@ class ConsultarCalificacionesCEController extends Controller
         else{
             
             view('Calificaciones.TablaC1',compact('AL','nombreA','Materia1'));
-            return view('Calificaciones.TablaC1',compact('AL','nombreA','Materia1'));
+            return view('Calificaciones.TablaC1',compact('AL','nombreA','Materia1',));
             }
     }
 

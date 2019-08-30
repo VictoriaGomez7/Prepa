@@ -51,6 +51,8 @@
 				        	<th  align="center">{{ ('Alumno') }}</th>
 				          	<th  align="center">{{ ('Parcial 1') }}</th>
 				          	<th  align="center">{{ ('Parcial 2') }}</th>
+				          	<th  align="center">{{ ('Promedio ') }}</th>
+
 				        </tr>
 			        
 			        	<?php $contador=0;
@@ -83,6 +85,8 @@
 					            		<td><input disabled type="number" step="0.1" min="0" max="10" name="Calif1[]" value="{{$Calif_Extraidas[$Con_cal]->Parcial1}}"> </td>
 					            		<td><input disabled type="number" step="0.1" min="0" max="10" name="Calif2[]" value="{{$Calif_Extraidas[$Con_cal]->Parcial2}}"></td>
 					            	@endif
+					            	<?php $Prome=($Calif_Extraidas[$Con_cal]->Parcial1+$Calif_Extraidas[$Con_cal]->Parcial2)/2; ?>
+					            	<td> {{$Prome}} </td>
 				          		</tr>
 				        		<?php $contador=$contador+0;
 				        		$Con_cal=$Con_cal+1; ?>

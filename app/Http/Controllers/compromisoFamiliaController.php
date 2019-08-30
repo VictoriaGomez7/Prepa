@@ -121,7 +121,7 @@ class compromisoFamiliaController extends Controller
                      $numero=$r->cambios;
                       $compromisosFamilia=compromisosFamilia::take(100)->get();
                     $compromisos= compromisosFamilia::take(100)->get();
-                        return view('compromisosFamilia.busqueda' ,compact('compromiso','compromisos','numeros'));
+                        return view('compromisosFamilia.busqueda' ,compact('compromiso','compromisos','numero'));
              }else{
                     $compromisos= compromisosFamilia::take(100)->get();
                          return redirect('formatofamilia')->with('compromisos')->with('msj2','Compromiso no encontrado');

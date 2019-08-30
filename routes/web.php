@@ -146,3 +146,6 @@ Route::resource('VisualizaMaGr','VisualizarMateriaGrupoController');
 Route::resource('AsignarCalificacion','CalificacionesController');
 
 Route::resource('Calificaciones','CalificacionesController');
+
+Route::get('materia/buscador','materias
+    BuscadorController@buscador');

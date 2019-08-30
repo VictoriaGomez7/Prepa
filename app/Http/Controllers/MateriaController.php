@@ -18,7 +18,7 @@ class MateriaController extends Controller
     public function index()
     {
 
-
+     // $materias=materia::all();
       return view('materias.consulta');
 
     }
@@ -671,8 +671,12 @@ class MateriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($r)
+    public function show(Request $re,$r)
     {
+      
+
+
+      
       $opciones2="";
       $opciones="";
         ///return $r;//
@@ -751,7 +755,27 @@ class MateriaController extends Controller
                 }
 
            }
+           if(isset($r->Clave)){
            return view('materias.modificar' ,compact('materia','opciones','opciones2'));
+         }else{
+       
+
+            $materias=Materia::all();
+            foreach ($materias as $materia) {
+              # code...
+                    if($re->has($materia->Clave)){
+
+                             return view('materias.vista' ,compact('materia','opciones','opciones2'));
+                    }
+            }
+            //return $re;
+            $materias=Materia::where([['Clave',$re->claveOriginal]])->get();
+            foreach ($materias as $materia) {
+              # code...
+               return view('materias.modificar' ,compact('materia','opciones','opciones2'));
+            }
+           
+         }  
           }
 
               /**
@@ -762,6 +786,7 @@ class MateriaController extends Controller
                */
     public function edit($g, Request $r)
     {
+      
       $materia=[];
       $materias=Materia::where([['Clave',$r->Clave]])->get();
 
@@ -775,7 +800,17 @@ class MateriaController extends Controller
         return view('materias.vista',compact('materia'));
       }
       else{
+
+        $materias=Materia::where([['Nombre',$r->Clave]])->get();
+        foreach ($materias as $row ) {
+          $materia=$row;
+        }
+        if($materia!=null){
+
+          return view('materias.vista',compact('materia'));
+        }else{
         return back()->with('msj2','La materia no existe' );
+      }
       }
     }
 
@@ -789,10 +824,10 @@ class MateriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($r)
+    public function update(Request $r)
     {
         //
-        return "h";
+       return "a";
     }
 
     /**
@@ -803,11 +838,13 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-       
+      
        materia::where('Clave',$id)->delete();
        materia_grupo::where('Clave',$id)->delete();
        return redirect('materia')->with('msj','Materia Eliminada Correctamente');
         //return  view('Alumnos.index',compact('alumnos'));
        //return view('materias.consulta');
     }
+
+
 }

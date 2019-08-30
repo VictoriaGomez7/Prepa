@@ -41,20 +41,24 @@ tr:nth-child(even) {
 
 <table id="alumn" class="table" style="width: 80%;" >
   <tr>
-    <th>Materia</th>
+    <th>Clave</th>
+     <th>Materia</th>
     <th>Parcial 1</th>
     <th>Parcial 2</th>
-    <th></th>
+    <th ></th>
   </tr>
+  <?php $c=0; ?>
   @foreach($AL as $alumno)
-  	<tr>
+  	<tr >
       {!! Form::open(['route'=>['Calificaciones.show',$alumno->id],'method'=>'PUT']) !!}
 	    <td>{{$alumno->ClaveM}}</td>
+      <td>{{$Materia1[$c]}}</td>
 	    <td>{{$alumno->Parcial1}}</td>
 	    <td>{{$alumno->Parcial2}}</td>
-      <td><button class="btn btn-success">Modificar</button></td>
+      <td ><button class="btn btn-success" style="height: 25px;" >Modificar</button></td>
       </form>
   	</tr>
+  <?php $c=$c+1; ?>
   @endforeach()
   {{--
   <tr>

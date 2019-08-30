@@ -99,8 +99,8 @@
 	    	</br>
 	    	Constitución #100 Teul de González Ortega.<br/>
                 Zac. C.P. 99800 <br/>
-                Teléfono (467)-952-71-83 <br/>
-                  Correo-e:prepateul@yahoo.com.mx
+                Teléfono: (467)-952-71-83 <br/>
+                  Correo-e: prepateul@yahoo.com.mx
                  </p >
 </body>
 </html>

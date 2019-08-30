@@ -4,7 +4,11 @@
 
 	<title></title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 </head>
 {{--@include('interfazprincipal.image')--}}
 @include('ControlEscolar.CEprincipal')
@@ -101,12 +105,13 @@ body{
 
 </style>
 	<head>
+
 		    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 			<!-- vinculo a bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- Temas--
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- se vincula al hoja de estilo para definir el aspecto del formulario de login--
+<!-- se vincula al hoja de estilo para definir el aspecto del formulario de login-->
 <link rel="stylesheet" type="text/css" href="estilo.css"-->
 		</head>
 		<body>
@@ -117,13 +122,13 @@ body{
 	<!--form type="session" class="form-group"  method="GET" action="/Reinscripcion/show"-->
 		<div class="input-group input-group-lg" style="padding:10px; text-align: center; ">
 			{{--<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-			<input type="text" class="form-control" name="Usuario" placeholder="Usuario" id="Usuario" aria-describedby="sizing-addon1" required>--}}
-			<label for="Materia" style="margin: 0px; padding: 0px;color: #4B5E7B; font-size:20px;">Buscar Materia</label>
+			<input type="text" class="form-control" name="Usuario"   placeholder="Usuario" id="Usuario" aria-describedby="sizing-addon1" required>--}}
+			<label for="Materia" style="margin: 0px; padding: 0px;color: #4B5E7B; font-size:20px;">Buscar  Materia</label>
 
 		</div>
 		<div class="input-group input-group-lg">
 
-			<input type="text" name="Clave" class="form-control" placeholder="Clave" aria-describedby="sizing-addon1" required style="z-index: 0;">
+			<input type="text" id="claveId" name="Clave" class="form-control" placeholder="Clave" aria-describedby="sizing-addon1" required style="z-index: 0;">
 		</div>
 		<br>
 		<p><button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Buscar</button></p>
@@ -132,21 +137,35 @@ body{
 					<p><button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Entrar</button></p>
 
 					<div class="opcioncontra"><a href="">Olvidaste tu contraseña?</a></div>--}}
-
-		 	{!! Form::close() !!}
-
 		 </div>
+
+		
+{!! Form::close() !!}
+ <script >
+			
+			window.addEventListener('load',function(){
+        document.getElementById("claveId").addEventListener("keyup", () => {
+            
+            if((document.getElementById("claveId").value.length)>=1)
+                fetch(`materia/buscador?claveId=${document.getElementById("claveId").value}`,{ method:'get' })
+                .then(response  =>  response.text() )
+                .then(html      =>  {   document.getElementById("busq").innerHTML = html  })
+            else
+                document.getElementById("busq").innerHTML = ""
+        })
+    });    
+		</script>
+ <div class="col-8" id="busq">
+        @include('materias.busqueda')
+    </div>
 		 <a href="ControlEscolarInicio">
     <button class="btn  btn-lg btn-success btn-block btn-signin">Cancelar</button></a>
 
 
 		 </div>
-
+		 		
 </body>
  <!-- vinculando a libreria Jquery-->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- <!-- Libreria java scritp de bootstrap -->
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
- 
+
 </body>
 </html>
